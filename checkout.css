@@ -1,0 +1,2137 @@
+/* code for map - start */
+#map {
+  height: 300px;
+  width: 100%;
+}
+
+.airport-marker {
+  display: flex;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  color: white;
+  font-size: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.airport-info {
+  background-color: #333a42;
+  padding: 5px 8px;
+  border-radius: 3px 0 0 3px;
+  display: flex;
+  align-items: center;
+}
+
+.airport-info .plane-icon {
+  width: 14px;
+  height: 14px;
+  margin-right: 5px;
+  transform: rotate(270deg);
+  fill: white;
+}
+.airport-info.destination .plane-icon {
+  transform: rotate(90deg);
+}
+
+.airport-code {
+  background-color: #000000;
+  padding: 5px 8px;
+  border-radius: 0 3px 3px 0;
+  font-weight: bold;
+}
+
+.ch_time {
+  position: relative;
+}
+.departure-time-input {
+  width: 100%;
+  cursor: pointer;
+}
+.time-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #ccc;
+  z-index: 10;
+}
+.time-slot,
+.time-reset {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.time-slot:hover,
+.time-reset:hover {
+  background: #eee;
+}
+.time-reset {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 1px solid #ccc;
+  z-index: 2;
+}
+
+.ch_trip_wrapper {
+  max-width: 1270px;
+  margin: auto;
+  border: 1px solid #c4c4c4;
+  padding: 40px;
+  box-shadow: 0px 0px 5px 0px #c4c4c4;
+}
+
+.ch_trip_cnt {
+  display: grid;
+  grid-template-columns: 1fr 460px;
+}
+
+.ch_trip_left,
+.cht_cnt {
+  padding-right: 100px;
+}
+
+.trip_details_top {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  column-gap: 30px;
+}
+
+.tripimg img {
+  display: block;
+  width: 100%;
+  padding: 30px;
+  border: 1px solid #c4c4c4;
+}
+
+.trip_pecenger {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 5px;
+  border: 1px solid #c4c4c4;
+  padding: 4px 18px;
+  font-size: 17px;
+  color: #5d5d5d;
+  margin-top: 14px;
+  margin-bottom: 20px;
+}
+
+.trip_pecenger img {
+  opacity: 0.7;
+  display: inline-block;
+  width: 14px;
+}
+.trip_message {
+  font-size: 15px;
+  color: #353535;
+  line-height: 1.4;
+}
+
+.ch_trip_det_cnt {
+  margin-top: 25px;
+}
+
+.trip_details_bottom,
+.cht_forming {
+  margin-top: 25px;
+  background-color: #f1f1f1;
+  padding: 30px;
+}
+
+.trip_details_bottom h4 {
+  font-size: 18px;
+  font-family: Knul, sans-serif;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.trip_date_oneway p {
+  font-size: 18px;
+  text-transform: uppercase;
+  margin: 14px 0px;
+  font-weight: bold;
+}
+
+.trip_one_date {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 20px;
+  row-gap: 16px;
+}
+
+.ch_date label {
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: Knul, sans-serif;
+  margin-bottom: 10px;
+}
+
+.ch_date input[type="date"] {
+  width: 100%;
+  height: 54px;
+  background-color: transparent;
+  border: 1px solid #c4c4c4;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  outline: none;
+  color: #000;
+}
+
+.ch_date input[type="date"]::placeholder {
+  color: #000;
+}
+
+.ch_time input {
+  width: 100%;
+  height: 54px;
+  background-color: transparent;
+  border: 1px solid #c4c4c4;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  outline: none;
+  color: #000;
+  background-image: url("https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/68722f3d340c05378e74674f_BlackJet-2.png");
+  background-repeat: no-repeat;
+  background-position: top 16px right 10px;
+  background-size: 20px;
+}
+
+.ch_trip_right_cnt {
+  background-color: #5d5d5d;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.trip_total_cal {
+  background-color: #000000;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.tripbox {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.tripheading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tripheading p {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  font-size: 18px;
+  color: #fff;
+}
+
+.tripheading p img {
+  display: inline-block;
+  width: 18px;
+}
+
+.tripheading > img {
+  display: inline-block;
+  width: 110px;
+}
+
+.trip_place {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.time_calcu {
+  margin: 30px 0px;
+}
+
+.trip_place_left h3 {
+  min-width: 105px;
+  background-color: #848484;
+  margin: 0;
+  font-size: 30px;
+  color: #fff;
+  text-align: center;
+  font-weight: normal;
+  padding: 12px 10px;
+}
+
+.trip_place_icon {
+  width: 36px;
+  background-image: url("https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/6873651956ec069344fda1a0_arrow_left.png");
+  height: 30px;
+  background-repeat: no-repeat;
+  background-size: 36px;
+  background-position: center center;
+}
+
+.tripbox:nth-of-type(2) .trip_place_icon {
+  background-image: url("https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/68736519c41a80753e67d02a_arrow_right.png");
+}
+
+.trip_place_left p {
+  font-size: 18px;
+  color: #fff;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.trip_cal {
+  display: flex;
+  justify-content: space-between;
+}
+
+.trip_cal_name {
+  font-size: 17px;
+  color: #ddd;
+}
+
+.trip_cal_number {
+  font-size: 17px;
+  color: #fff;
+}
+
+.trip_cal_text {
+  position: relative;
+}
+
+.trip_cal_text:nth-child(2):after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  left: -25px;
+  top: 0;
+  background-color: #c4c4c4;
+}
+
+.trip_cal_text:nth-child(2):before {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  right: -25px;
+  top: 0;
+  background-color: #c4c4c4;
+}
+
+.tripbox[data-leg-index="1"] {
+  border-top: 1px solid #c4c4c4;
+}
+
+.trip_total_tax {
+  color: #fff;
+  margin-bottom: 18px;
+}
+
+.trip_total_tax p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 17px;
+  margin: 2px 0px;
+}
+
+.trip_total_number {
+  color: #fff;
+  border-top: 1px solid #454545;
+  padding-top: 12px;
+}
+
+.trip_total_number p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 17px;
+}
+
+.time_flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.time_flex p {
+  font-size: 17px;
+  color: #fff;
+  margin-top: 8px;
+  text-align: center;
+  min-width: 105px;
+}
+
+.checkbtn {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 18px;
+  gap: 8px;
+  padding: 12px 12px;
+  margin-top: 35px;
+  transition: all 0.2s ease;
+}
+
+.checkbtn:hover {
+  opacity: 0.7;
+}
+
+.mobile_checkbtn {
+  display: none;
+}
+
+.che_trip_img {
+  background-color: #5d5d5d;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 20px;
+}
+
+.trip_img_ch {
+  display: grid;
+  grid-template-columns: 1fr 150px;
+  align-items: center;
+  background-color: #fff;
+  column-gap: 20px;
+}
+
+.trip_img_ch_right h3 {
+  font-size: 24px;
+  color: #000;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: Knul, sans-serif;
+  font-weight: 500;
+}
+
+.trip_img_ch_right p {
+  display: inline-block;
+  border: 1px solid #9e9e9e;
+  color: #000;
+  opacity: 0.6;
+  display: inline-flex;
+  align-items: center;
+  column-gap: 6px;
+  font-size: 17px;
+  line-height: 1;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 14px;
+}
+
+.trip_img_ch_right p img {
+  display: inline-block;
+  font-size: 14px;
+}
+
+.confimationtext_wrapper {
+  background-color: #000000;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 20px;
+  display: flex;
+  column-gap: 12px;
+}
+
+.confi_clock img {
+  display: block;
+  width: 20px;
+  position: relative;
+  top: 5px;
+}
+
+.confi_text h3 {
+  font-size: 22px;
+  font-family: Knul, sans-serif;
+  font-weight: 500;
+  color: #fff;
+  margin: 0;
+}
+
+.confi_text p {
+  font-size: 16px;
+  color: #8a8a8a;
+}
+
+.chtf_heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chtf_heading h4,
+.chtf_heading a {
+  font-size: 18px;
+  color: #000;
+  line-height: 1;
+  font-family: Knul, sans-serif;
+  font-weight: 500;
+}
+
+.chtf_heading a {
+  display: inline-block;
+  text-decoration: underline;
+  transition: all 0.2s ease;
+}
+
+.chtf_heading a:hover {
+  opacity: 0.7;
+}
+
+.chtf_pre_input input {
+  border-color: #bdbdbd;
+}
+
+.chtf_pre_input {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.chtf_pass {
+  margin-top: 20px;
+}
+
+.chtf_pass > p {
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  color: #000000;
+  margin-bottom: 6px;
+}
+
+.passreq {
+  width: 100%;
+  outline: none;
+  background: #f1f1f1;
+  border: 1px solid #bdbdbd;
+  padding: 0px 13px;
+  display: grid;
+  grid-template-columns: 1fr 110px;
+  column-gap: 70px;
+  align-items: center;
+  padding-left: 0;
+}
+
+.chtf_pass_info p {
+  display: flex;
+  align-items: center;
+  column-gap: 3px;
+  font-size: 18px;
+  color: #000;
+  line-height: 1;
+}
+
+.chtf_pass_info p img {
+  display: inline-block;
+  width: 14px;
+  opacity: 0.6;
+}
+
+.passreq button {
+  display: inline-block;
+  font-size: 16px;
+  color: #fff;
+  text-transform: uppercase;
+  background-color: #5d5d5d;
+  border: 0;
+  outline: none;
+  padding: 5px;
+  transition: all 0.2 ease;
+}
+
+.passreq button:hover {
+  opacity: 0.7;
+}
+
+.passreq p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 14px;
+  cursor: pointer;
+}
+
+.chtf_payment {
+  margin-top: 20px;
+}
+
+.pgs_wrapper {
+  position: relative;
+}
+
+.chtf_pass_info {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 50px;
+  background-color: #f1f1f1;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+  padding: 8px 0px;
+  border-radius: 0px 0px 5px 5px;
+  height: 200px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: none;
+  z-index: 999;
+}
+
+.chtf_payment_wrapper > p {
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  color: #000000;
+  margin-bottom: 6px;
+}
+
+.chtfp_name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.chtfp_name > span {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #b4b4b4;
+  border-radius: 50%;
+}
+
+.chtfp_name p {
+  font-size: 18px;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.grid-row {
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+
+.card_details_input input {
+  display: block;
+  width: 100%;
+  outline: none;
+  background: #f1f1f1;
+  border: 1px solid #bdbdbd;
+  padding: 11px 13px;
+  color: #000;
+}
+
+.card_details_input input::placeholder {
+  color: #000;
+  opacity: 1;
+}
+
+#card_number {
+  border-bottom: 0;
+  background-image: url("https://cdn.prod.website-files.com/66fa75fb0d726d65d059a42d/687932cc4229edb6ed2c8479_card_icon.png");
+  background-repeat: no-repeat;
+  background-position: center right 10px;
+  background-size: 130px;
+  padding-right: 140px;
+}
+
+#cvc {
+  border-left: 0;
+}
+
+.chtfp_name p > span {
+  display: inline-block;
+  font-size: 16px;
+  letter-spacing: normal;
+  color: #fff;
+  text-transform: uppercase;
+  background-color: #5d5d5d;
+  line-height: 1;
+  padding: 10px 20px;
+  margin-left: 20px;
+}
+
+.chtfp_card_details {
+  display: none;
+  margin-top: 10px;
+}
+
+.chtfp_card,
+.add_bank,
+.chtfp_acc_details {
+  margin: 10px 0px;
+}
+
+.add_bank button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 18px;
+  gap: 8px;
+  padding: 12px 40px;
+  transition: all 0.2s ease;
+  margin-left: 30px;
+}
+
+.add_bank {
+  display: none;
+}
+
+.add_bank button:hover {
+  opacity: 0.7;
+}
+
+.chtfp_acc_details p {
+  font-size: 16px;
+  color: #353535;
+}
+
+.chtfp_acc_details {
+  margin-left: 30px;
+  display: none;
+}
+
+.cht_condition {
+  background-color: #f1f1f1;
+  padding: 20px;
+  margin-top: 30px;
+  height: 370px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.cht_cont_block_left {
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+  margin-bottom: 10px;
+}
+
+.cht_cont_block_left span {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #5d5d5d;
+}
+
+.cht_cont_block_left h4 {
+  font-size: 20px;
+  color: #5d5d5d;
+  font-family: Knul, sans-serif;
+  font-weight: 600;
+}
+
+.cht_cont_block {
+  margin-bottom: 15px;
+}
+
+.cht_cont_block_right p {
+  font-size: 16px;
+  color: #353535;
+}
+
+.cht_terms {
+  margin-top: 16px;
+  display: flex;
+  column-gap: 10px;
+}
+
+.cht_terms input {
+  display: inline-block;
+  accent-color: #000;
+  position: relative;
+  top: -10px;
+}
+
+.cht_terms label {
+  display: inline;
+  font-size: 18px;
+  color: #5d5d5d;
+  font-weight: normal;
+  margin: 0;
+  cursor: pointer;
+}
+
+.cht_terms label a {
+  display: inline;
+  color: #000;
+  text-decoration: underline;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.cht_terms label a:hover {
+  opacity: 0.7;
+}
+
+.submit_check_form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.submit_check_form button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 18px;
+  gap: 8px;
+  padding: 12px 40px;
+  transition: all 0.2s ease;
+}
+
+.submit_check_form button:hover {
+  opacity: 0.7;
+}
+
+.submit_check_form {
+  margin-top: 30px;
+}
+
+.submit_check_form button:first-child img {
+  transform: scaleX(-1);
+}
+
+.cht_cnt {
+  display: none;
+}
+
+/* --code for popup start-- */
+.passenger {
+  background-color: #4b4b4be5;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 9999999;
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.psng_wrapper {
+  width: 690px;
+  margin: auto;
+  background-color: #fff;
+}
+
+.psng_cnt {
+  padding: 30px;
+}
+
+.psng_heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.psng_cross img {
+  display: inline-block;
+  width: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.psng_cross img:hover {
+  opacity: 0.7;
+}
+
+.psng_cnt_wrap {
+  background-color: #f1f1f1;
+  padding: 26px 36px;
+  margin-top: 20px;
+}
+
+.psng_cnt_heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.psng_cnt_heading h4 {
+  font-size: 18px;
+  color: #000;
+  font-family: Knul, sans-serif;
+  font-weight: 500;
+}
+
+.psng_cnt_heading p {
+  font-size: 16px;
+  color: #5d5d5d;
+}
+
+.psng_cnt_wrap form {
+  display: block;
+  margin-top: 20px;
+}
+
+.psng_inpgrp_top {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.psng_inpgrp_top input {
+  color: #000;
+  border: 1px solid #b9b9b9;
+}
+
+.psng_inpgrp_top input::placeholder {
+  color: #000;
+  opacity: 1;
+}
+
+.signin_select select {
+  display: block;
+  width: 100%;
+  outline: none;
+  background: #f1f1f1;
+  border: 1px solid #b9b9b9;
+  padding: 10px 13px;
+}
+
+.psng_inpgrp_top .signin_input p {
+  font-size: 14px;
+  color: #5d5d5d;
+  margin-top: 6px;
+  line-height: 1;
+}
+
+.psng_inpgrp_top .signin_input label {
+  margin-bottom: 6px;
+}
+
+.psng_inpgrp_top .signin_input input {
+  height: 43px;
+}
+
+.psng_inpgrp_bottom .signin_select {
+  margin-top: 16px;
+}
+
+.psng_inpgrp_bottom .signin_select select {
+  cursor: pointer;
+}
+
+.submit_form button {
+  display: inline-block;
+  width: 100%;
+  font-size: 17px;
+  color: #fff;
+  text-transform: uppercase;
+  background-color: #000000;
+  padding: 10px;
+  transition: all 0.2s ease;
+}
+
+.submit_form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 25px;
+  margin-top: 35px;
+}
+
+.submit_form .cancelbtn {
+  background-color: #8a8a8a;
+}
+
+.submit_form button:hover {
+  background-color: #252525;
+}
+
+.psng_ask {
+  background-color: #000;
+  padding: 20px 30px;
+}
+
+.psng_ask {
+  display: flex;
+  justify-content: space-between;
+}
+
+.psng_ask_left {
+  display: flex;
+  column-gap: 12px;
+}
+
+.psng_ask_left_text h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 22px;
+  font-family: Knul, sans-serif;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.psng_ask_left_icon img {
+  display: inline-block;
+  width: 26px;
+}
+
+.psng_ask_left_text p {
+  font-size: 18px;
+  color: #8a8a8a;
+}
+
+.psng_ask_right ul {
+  margin: 0;
+  padding: 0;
+}
+
+.psng_ask_right ul li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.psng_ask_right ul li a {
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+  font-size: 18px;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+
+.psng_ask_right ul li:last-child a {
+  margin-top: 5px;
+}
+
+.psng_ask_right ul li a:hover {
+  opacity: 0.6;
+}
+
+.signin_select select {
+  cursor: pointer;
+}
+
+.passenger {
+  display: none;
+}
+
+.chtfp_name.active > span {
+  border: 6px solid #000;
+}
+
+.activepassdrop {
+  display: block;
+}
+/* --code for popup end-- */
+
+.selectedpassname {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.selectedpassname img {
+  display: block;
+  width: 15px;
+}
+
+.selectedpassname {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  border: 1px solid #bdbdbd;
+  padding: 10px 10px;
+  margin-top: 14px;
+  position: relative;
+}
+
+.no-more-passenger {
+  font-size: 25px;
+  padding: 14px;
+  font-family: Knul, sans-serif;
+  font-weight: 500;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.stored_passenger {
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.stored_passenger:hover {
+  background-color: #fff;
+}
+
+.stored_passenger > img {
+  display: block;
+  width: 14px;
+}
+
+.remove-selected-passenger {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+}
+
+@media screen and (min-width: 1340px) and (max-width: 1500px) {
+  .ch_trip_left,
+  .cht_cnt {
+    padding-right: 40px;
+  }
+
+  .trip_details_top {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .psng_cnt {
+    padding: 20px;
+  }
+
+  .psng_cnt_wrap {
+    padding: 16px 25px;
+    margin-top: 10px;
+  }
+
+  .psng_cnt_wrap form {
+    display: block;
+    margin-top: 8px;
+  }
+
+  .psng_inpgrp_top {
+    row-gap: 10px;
+  }
+
+  .psng_inpgrp_bottom .signin_select {
+    margin-top: 10px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1340px) {
+  .ch_trip_wrapper {
+    padding: 20px;
+  }
+  .che_trip_img {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .trip_img_ch_right h3 {
+    font-size: 18px;
+  }
+
+  .trip_img_ch_right p {
+    margin-top: 2px;
+  }
+
+  .trip_img_ch_right p {
+    font-size: 12px;
+  }
+
+  .trip_img_ch_right p img {
+    width: 11px;
+  }
+
+  .trip_img_ch {
+    display: grid;
+    grid-template-columns: 1fr 105px;
+  }
+
+  .ch_trip_cnt {
+    grid-template-columns: 1fr 380px;
+  }
+
+  .confimationtext_wrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .ch_trip_left,
+  .cht_cnt {
+    padding-right: 30px;
+  }
+  .trip_details_top {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .trip_pecenger {
+    margin-top: 8px;
+    margin-bottom: 10px;
+  }
+
+  .trip_message {
+    font-size: 13px;
+    line-height: 1.2;
+  }
+
+  .ch_trip_right_cnt {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .trip_place_left h3 {
+    font-size: 25px;
+  }
+
+  .trip_cal_name {
+    font-size: 15px;
+  }
+
+  .trip_cal_number {
+    font-size: 14px;
+  }
+
+  .trip_cal_text:nth-child(2)::before {
+    right: -18px;
+  }
+
+  .trip_cal_text:nth-child(2)::after {
+    left: -18px;
+  }
+
+  .trip_total_cal {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .trip_details_bottom,
+  .cht_forming {
+    padding: 15px;
+  }
+
+  .chtfp_name p span {
+    display: block;
+  }
+
+  .chtfp_name p span {
+    margin-left: 2px;
+    margin-top: 5px;
+  }
+
+  #discount_bank,
+  #discount_ware {
+    display: inline-block !important;
+  }
+
+  .chtfp_name {
+    align-items: flex-start;
+  }
+
+  .chtfp_name > span {
+    top: 4px;
+  }
+
+  .psng_cnt {
+    padding: 20px;
+  }
+
+  .psng_cnt_wrap {
+    padding: 16px 25px;
+    margin-top: 10px;
+  }
+
+  .psng_cnt_wrap form {
+    display: block;
+    margin-top: 8px;
+  }
+
+  .psng_inpgrp_top {
+    row-gap: 10px;
+  }
+
+  .psng_inpgrp_bottom .signin_select {
+    margin-top: 10px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  #map {
+    display: none;
+  }
+
+  .ch_trip_wrapper {
+    max-width: 100%;
+    border: 0;
+    padding: 0;
+    box-shadow: none;
+    margin-top: 30px;
+  }
+
+  .ch_trip_left_det_heading {
+    font-size: 1.3rem;
+  }
+
+  .ch_trip_det_cnt {
+    margin-top: 12px;
+  }
+
+  .ch_trip_left,
+  .cht_cnt {
+    padding: 0;
+  }
+
+  .ch_trip_cnt {
+    grid-template-columns: 1fr;
+  }
+
+  .trip_details_top {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 20px;
+  }
+
+  .trip_pecenger {
+    margin-top: 5px;
+    margin-bottom: 14px;
+  }
+
+  .trip_details_bottom,
+  .cht_forming {
+    padding: 20px;
+  }
+
+  .trip_date_oneway p {
+    margin-top: 10px !important;
+  }
+
+  .trip_one_date {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 10px;
+  }
+
+  .checkbtn {
+    margin-top: 20px;
+  }
+
+  .ch_trip_right_cnt,
+  .che_trip_img {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .trip_img_ch {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    row-gap: 20px;
+  }
+
+  .trip_img_ch_right h3 {
+    font-size: 25px;
+  }
+
+  .trip_img_ch_right p {
+    font-size: 20px;
+  }
+
+  .trip_img_ch_right p img {
+    display: inline-block;
+    width: 18px;
+  }
+
+  .tripbox {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .trip_place_left h3 {
+    min-width: 95px;
+    font-size: 22px;
+    padding: 8px 10px;
+  }
+
+  .time_calcu {
+    margin: 20px 0px;
+  }
+
+  .trip_cal_name {
+    font-size: 20px;
+  }
+
+  .trip_cal_number {
+    font-size: 16px;
+  }
+
+  .trip_cal_text:nth-child(2)::before {
+    right: -70px;
+  }
+
+  .trip_cal_text:nth-child(2)::after {
+    left: -70px;
+  }
+
+  .trip_total_cal {
+    padding: 20px 15px;
+  }
+
+  .ch_policy {
+    margin-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 0px;
+  }
+
+  .ch_policy_wrapper {
+    max-width: 100%;
+  }
+
+  .policy_cnt_para {
+    width: 100%;
+  }
+
+  .policy_cnt_text {
+    flex: auto;
+  }
+
+  .changegrid .ch_trp_left_wrapper {
+    order: 2;
+  }
+
+  .changegrid .ch_trip_right {
+    order: 1;
+  }
+
+  .confimationtext_wrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .cht_forming {
+    margin-top: 10px;
+  }
+
+  .cht_cnt {
+    margin-top: 25px;
+  }
+
+  .trip_details_bottom,
+  .cht_forming {
+    padding: 15px;
+  }
+
+  .chtf_heading {
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 12px;
+  }
+
+  .chtf_pre_input {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .passreq {
+    grid-template-columns: 1fr;
+    padding-right: 0;
+  }
+
+  .passreq p {
+    padding-right: 14px;
+  }
+
+  .chtfp_name > span {
+    flex-shrink: 0;
+    position: relative;
+    top: 4px;
+  }
+
+  .chtfp_name {
+    align-items: flex-start;
+  }
+
+  .chtfp_name p > span {
+    padding: 8px 20px;
+    margin-left: 0;
+    margin-top: 5px;
+  }
+
+  .add_bank button {
+    font-size: 18px;
+    gap: 8px;
+    padding: 8px 15px;
+  }
+
+  .selectedpassname {
+    padding: 5px 10px;
+    margin-top: 8px;
+  }
+
+  .cht_condition {
+    background-color: #f1f1f1;
+    padding: 15px;
+    margin-top: 15px;
+  }
+
+  .cht_terms input {
+    top: -10px;
+  }
+
+  .submit_check_form {
+    margin-top: 25px;
+  }
+
+  .submit_check_form button {
+    font-size: 15px;
+    gap: 8px;
+    padding: 8px 18px;
+  }
+
+  #card_number {
+    background-size: 90px;
+    padding-right: 110px;
+  }
+
+  .psng_wrapper {
+    width: 96%;
+  }
+
+  .psng_cnt {
+    padding: 15px;
+  }
+
+  .psng_cnt_wrap {
+    padding: 15px 15px;
+    margin-top: 10px;
+    height: 495px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .psng_inpgrp_top .signin_input label {
+    margin-bottom: 3px;
+    font-size: 15px;
+  }
+
+  .psng_cnt_wrap form {
+    margin-top: 10px;
+  }
+
+  .psng_inpgrp_top {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .submit_form {
+    margin-top: 20px;
+  }
+
+  .psng_ask {
+    padding: 15px;
+  }
+
+  .psng_ask {
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  .psng_ask_right {
+    margin-left: 35px;
+  }
+
+  .chtfp_name p span {
+    display: block;
+  }
+
+  #discount_bank,
+  #discount_ware {
+    display: inline-block !important;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  #map {
+    display: none;
+  }
+
+  .ch_trip_wrapper {
+    max-width: 100%;
+    border: 0;
+    padding: 0;
+    box-shadow: none;
+    margin-top: 30px;
+  }
+
+  .ch_trip_left_det_heading {
+    font-size: 1.3rem;
+  }
+
+  .ch_trip_det_cnt {
+    margin-top: 12px;
+  }
+
+  .ch_trip_left,
+  .cht_cnt {
+    padding: 0;
+  }
+
+  .ch_trip_cnt {
+    grid-template-columns: 1fr;
+  }
+
+  .trip_details_top {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+
+  .trip_pecenger {
+    margin-top: 5px;
+    margin-bottom: 14px;
+  }
+
+  .trip_details_bottom,
+  .cht_forming {
+    padding: 20px;
+  }
+
+  .trip_date_oneway p {
+    margin-top: 10px !important;
+  }
+
+  .trip_one_date {
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+  }
+
+  .checkbtn {
+    margin-top: 20px;
+  }
+
+  .ch_trip_right_cnt,
+  .che_trip_img {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .trip_img_ch {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    row-gap: 20px;
+  }
+
+  .trip_img_ch_right h3 {
+    font-size: 25px;
+  }
+
+  .trip_img_ch_right p {
+    font-size: 20px;
+  }
+
+  .trip_img_ch_right p img {
+    display: inline-block;
+    width: 18px;
+  }
+
+  .tripbox {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .trip_place_left h3 {
+    min-width: 95px;
+    font-size: 22px;
+    padding: 8px 10px;
+  }
+
+  .time_calcu {
+    margin: 20px 0px;
+  }
+
+  .trip_cal_name {
+    font-size: 15px;
+  }
+
+  .trip_cal_number {
+    font-size: 14px;
+  }
+
+  .trip_cal_text:nth-child(2)::before {
+    right: -35px;
+  }
+
+  .trip_cal_text:nth-child(2)::after {
+    left: -35px;
+  }
+
+  .trip_total_cal {
+    padding: 20px 15px;
+  }
+
+  .ch_policy {
+    margin-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 0px;
+  }
+
+  .ch_policy_wrapper {
+    max-width: 100%;
+  }
+
+  .policy_cnt_para {
+    width: 100%;
+  }
+
+  .policy_cnt_text {
+    flex: auto;
+  }
+
+  .changegrid .ch_trp_left_wrapper {
+    order: 2;
+  }
+
+  .changegrid .ch_trip_right {
+    order: 1;
+  }
+
+  .confimationtext_wrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .cht_forming {
+    margin-top: 10px;
+  }
+
+  .cht_cnt {
+    margin-top: 25px;
+  }
+
+  .trip_details_bottom,
+  .cht_forming {
+    padding: 15px;
+  }
+
+  .chtf_heading {
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 12px;
+  }
+
+  .chtf_pre_input {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .passreq {
+    grid-template-columns: 1fr;
+    padding-right: 0;
+  }
+
+  .passreq p {
+    padding-right: 14px;
+  }
+
+  .chtfp_name > span {
+    flex-shrink: 0;
+    position: relative;
+    top: 4px;
+  }
+
+  .chtfp_name {
+    align-items: flex-start;
+  }
+
+  .chtfp_name p > span {
+    padding: 8px 20px;
+    margin-left: 0;
+    margin-top: 5px;
+  }
+
+  .chtfp_name p span#discount_bank,
+  .chtfp_name p span#discount_ware {
+    display: inline-block !important;
+  }
+
+  .add_bank button {
+    font-size: 18px;
+    gap: 8px;
+    padding: 8px 15px;
+  }
+
+  .selectedpassname {
+    padding: 5px 10px;
+    margin-top: 8px;
+  }
+
+  .cht_condition {
+    background-color: #f1f1f1;
+    padding: 15px;
+    margin-top: 15px;
+  }
+
+  .cht_terms input {
+    top: -10px;
+  }
+
+  .submit_check_form {
+    margin-top: 25px;
+  }
+
+  .submit_check_form button {
+    font-size: 15px;
+    gap: 8px;
+    padding: 8px 18px;
+  }
+
+  #card_number {
+    background-size: 90px;
+    padding-right: 110px;
+  }
+
+  .psng_wrapper {
+    width: 96%;
+  }
+
+  .psng_cnt {
+    padding: 15px;
+  }
+
+  .psng_cnt_wrap {
+    padding: 15px 15px;
+    margin-top: 10px;
+    height: 495px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .psng_inpgrp_top .signin_input label {
+    margin-bottom: 3px;
+    font-size: 15px;
+  }
+
+  .psng_cnt_wrap form {
+    margin-top: 10px;
+  }
+
+  .psng_inpgrp_top {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .submit_form {
+    margin-top: 20px;
+  }
+
+  .psng_ask {
+    padding: 15px;
+  }
+
+  .psng_ask {
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  .psng_ask_right {
+    margin-left: 35px;
+  }
+
+  .chtfp_name p span {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #map {
+    display: none;
+  }
+
+  .ch_trip_wrapper {
+    max-width: 100%;
+    border: 0;
+    padding: 0;
+    box-shadow: none;
+    margin-top: 30px;
+  }
+
+  .ch_trip_left_det_heading {
+    font-size: 1.3rem;
+  }
+
+  .ch_trip_det_cnt {
+    margin-top: 12px;
+  }
+
+  .ch_trip_left,
+  .cht_cnt {
+    padding: 0;
+  }
+
+  .ch_trip_cnt {
+    grid-template-columns: 1fr;
+  }
+
+  .trip_details_top {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+
+  .trip_pecenger {
+    margin-top: 5px;
+    margin-bottom: 14px;
+  }
+
+  .trip_details_bottom,
+  .cht_forming {
+    padding: 20px;
+  }
+
+  .trip_date_oneway p {
+    margin-top: 10px !important;
+  }
+
+  .trip_one_date {
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+  }
+
+  .checkbtn {
+    margin-top: 20px;
+  }
+
+  .ch_trip_right_cnt,
+  .che_trip_img {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .trip_img_ch {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    row-gap: 20px;
+  }
+
+  .trip_img_ch_right h3 {
+    font-size: 25px;
+  }
+
+  .trip_img_ch_right p {
+    font-size: 20px;
+  }
+
+  .trip_img_ch_right p img {
+    display: inline-block;
+    width: 18px;
+  }
+
+  .tripbox {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .trip_place_left h3 {
+    min-width: 95px;
+    font-size: 22px;
+    padding: 8px 10px;
+  }
+
+  .time_calcu {
+    margin: 20px 0px;
+  }
+
+  .trip_cal_name {
+    font-size: 15px;
+  }
+
+  .trip_cal_number {
+    font-size: 14px;
+  }
+
+  .trip_cal_text:nth-child(2)::before {
+    right: -8px;
+  }
+
+  .trip_cal_text:nth-child(2)::after {
+    left: -8px;
+  }
+
+  .trip_total_cal {
+    padding: 20px 15px;
+  }
+
+  .ch_policy {
+    margin-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 0px;
+  }
+
+  .ch_policy_wrapper {
+    max-width: 100%;
+  }
+
+  .policy_cnt_para {
+    width: 100%;
+  }
+
+  .policy_cnt_text {
+    flex: auto;
+  }
+
+  .changegrid .ch_trp_left_wrapper {
+    order: 2;
+  }
+
+  .changegrid .ch_trip_right {
+    order: 1;
+  }
+
+  .confimationtext_wrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .cht_forming {
+    margin-top: 10px;
+  }
+
+  .cht_cnt {
+    margin-top: 25px;
+  }
+
+  .trip_details_bottom,
+  .cht_forming {
+    padding: 15px;
+  }
+
+  .chtf_heading {
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 12px;
+  }
+
+  .chtf_pre_input {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .passreq {
+    grid-template-columns: 1fr;
+    padding-right: 0;
+  }
+
+  .passreq p {
+    padding-right: 14px;
+  }
+
+  .chtfp_name > span {
+    flex-shrink: 0;
+    position: relative;
+    top: 4px;
+  }
+
+  .chtfp_name {
+    align-items: flex-start;
+  }
+
+  .chtfp_name p > span {
+    padding: 8px 20px;
+    margin-left: 0;
+    margin-top: 5px;
+  }
+
+  .add_bank button {
+    font-size: 18px;
+    gap: 8px;
+    padding: 8px 15px;
+  }
+
+  .selectedpassname {
+    padding: 5px 10px;
+    margin-top: 8px;
+  }
+
+  .cht_condition {
+    background-color: #f1f1f1;
+    padding: 15px;
+    margin-top: 15px;
+  }
+
+  .cht_terms input {
+    top: -19px;
+  }
+
+  .submit_check_form {
+    margin-top: 25px;
+  }
+
+  .submit_check_form button {
+    font-size: 15px;
+    gap: 8px;
+    padding: 8px 18px;
+  }
+
+  #card_number {
+    background-size: 90px;
+    padding-right: 110px;
+  }
+
+  .psng_wrapper {
+    width: 96%;
+  }
+
+  .psng_cnt {
+    padding: 15px;
+  }
+
+  .psng_cnt_wrap {
+    padding: 15px 15px;
+    margin-top: 10px;
+    height: 495px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .psng_inpgrp_top .signin_input label {
+    margin-bottom: 3px;
+    font-size: 15px;
+  }
+
+  .psng_cnt_wrap form {
+    margin-top: 10px;
+  }
+
+  .psng_inpgrp_top {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .submit_form {
+    margin-top: 20px;
+  }
+
+  .psng_ask {
+    padding: 15px;
+  }
+
+  .psng_ask {
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  .psng_ask_right {
+    margin-left: 35px;
+  }
+}
