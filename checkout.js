@@ -1050,7 +1050,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 dropdownList.querySelector(".pass_drop_list");
               if (passDropList && passDropList.children.length === 0) {
                 passDropList.innerHTML =
-                  '<div class="no-more-passenger">no more saved passenger</div>';
+                  '<div class="no-more-passenger">no more saved passengers</div>';
               }
               // Hide dropdown after selection
               prePassDropHolder.classList.remove("activepassdrop");
@@ -1241,7 +1241,7 @@ function createDropdownPassengerDiv(
     ".chtf_pass_info .pass_drop_list"
   );
   if (dropdownList) {
-    // Remove 'no more saved passenger' if present
+    // Remove 'no more saved passengers' if present
     const noMore = dropdownList.querySelector(".no-more-passenger");
     if (noMore) noMore.remove();
     // Find correct position
@@ -1280,7 +1280,7 @@ function renderDropdownList() {
   );
   if (availablePassengers.length === 0) {
     dropdownList.innerHTML =
-      '<div class="no-more-passenger">no more saved passenger</div>';
+      '<div class="no-more-passenger">no more saved passengers</div>';
     return;
   }
   availablePassengers.forEach((passenger) => {
